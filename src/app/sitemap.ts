@@ -25,14 +25,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = staticRoutes.map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: now,
-    changeFrequency: route.path === '' ? 'weekly' : 'monthly',
+    changeFrequency: (route.path === '' ? 'weekly' : 'monthly') as const,
     priority: route.priority,
   }));
 
   const serviceAreaPages = serviceAreaLinks.map((area) => ({
     url: `${baseUrl}/service-areas/${area.slug}`,
     lastModified: now,
-    changeFrequency: 'monthly',
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 
