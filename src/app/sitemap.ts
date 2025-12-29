@@ -22,17 +22,17 @@ const staticRoutes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const pages = staticRoutes.map((route) => ({
+  const pages: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: now,
-    changeFrequency: (route.path === '' ? 'weekly' : 'monthly') as const,
+    changeFrequency: route.path === '' ? 'weekly' : 'monthly',
     priority: route.priority,
   }));
 
-  const serviceAreaPages = serviceAreaLinks.map((area) => ({
+  const serviceAreaPages: MetadataRoute.Sitemap = serviceAreaLinks.map((area) => ({
     url: `${baseUrl}/service-areas/${area.slug}`,
     lastModified: now,
-    changeFrequency: 'monthly' as const,
+    changeFrequency: 'monthly',
     priority: 0.7,
   }));
 
