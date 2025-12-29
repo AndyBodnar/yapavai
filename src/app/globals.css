@@ -1,26 +1,236 @@
 @import "tailwindcss";
 
+/* ============================================
+   YAVAPAI WASTE SOLUTIONS - DESIGN SYSTEM
+   Dark Theme: Black + White + Yellow
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --background: #000000;
+  --background-secondary: #0a0a0a;
+  --background-tertiary: #111111;
+  --background-card: #1a1a1a;
+
+  /* Text Colors */
+  --foreground: #ffffff;
+  --foreground-muted: #a0a0a0;
+  --foreground-subtle: #666666;
+
+  /* Accent - Yellow */
+  --accent: #FFD700;
+  --accent-hover: #FFC000;
+  --accent-muted: #B8960F;
+
+  /* Semantic Colors */
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+
+  /* Borders */
+  --border: #222222;
+  --border-hover: #333333;
+
+  /* Shadows */
+  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow-accent: rgba(255, 215, 0, 0.2);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-tertiary: var(--background-tertiary);
+  --color-background-card: var(--background-card);
   --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-muted: var(--accent-muted);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.card {
+  background: var(--background-card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 10px 40px var(--shadow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--background);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px var(--shadow-accent);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--foreground);
+  border: 2px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.phone-link {
+  color: var(--accent);
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.phone-link:hover {
+  color: var(--accent-hover);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease forwards;
+}
+
+@keyframes devcollectiveQuake {
+  0%, 82%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    text-shadow: none;
+  }
+  84% {
+    transform: translate3d(-1px, 1px, 0) rotate(-0.6deg);
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+  }
+  86% {
+    transform: translate3d(2px, -1px, 0) rotate(0.6deg);
+    text-shadow: 0 0 16px rgba(255, 215, 0, 0.8);
+  }
+  88% {
+    transform: translate3d(-2px, 2px, 0) rotate(-0.4deg);
+    text-shadow: 0 0 18px rgba(255, 215, 0, 0.9);
+  }
+  90% {
+    transform: translate3d(1px, -2px, 0) rotate(0.4deg);
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+  }
+  92% {
+    transform: translate3d(-1px, 1px, 0) rotate(-0.2deg);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+  }
+}
+
+.devcollective-shake {
+  animation: devcollectiveQuake 6s ease-in-out infinite;
+}
+
+@keyframes statStarPulse {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.92) rotate(-6deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.06) rotate(6deg);
+  }
+}
+
+.stat-star {
+  animation: statStarPulse 4.8s ease-in-out infinite;
+}
+
+@keyframes carouselLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes carouselRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: carouselLeft 45s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.carousel-track-right {
+  animation-name: carouselRight;
+}
+
+.carousel-track-left {
+  animation-name: carouselLeft;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
